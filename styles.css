@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+}
+
+.login-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 320px;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1877f2;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #606770;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.login-btn {
+    width: 100%;
+    background: #1877f2;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.login-btn:hover {
+    background: #166fe5;
+}
+
+.forgot {
+    display: block;
+    color: #1877f2;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.forgot:hover {
+    text-decoration: underline;
+}
+
+.create-account {
+    width: 100%;
+    background: #42b72a;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.create-account:hover {
+    background: #36a420;
+}
+
+footer {
+    text-align: center;
+    font-size: 12px;
+    color: #606770;
+    width: 100%;
+    padding: 15px 0;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+footer ul li {
+    display: inline;
+    margin: 0 10px;
+    color: #606770;
+    cursor: pointer;
+}
+
+footer ul li:hover {
+    text-decoration: underline;
+}
