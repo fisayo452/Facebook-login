@@ -1,1 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Allow: /
 
+Sitemap: https://harmonious-mooncake-91f654.netlify.app/sitemap.xml
